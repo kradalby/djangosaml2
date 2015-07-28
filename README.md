@@ -1,8 +1,10 @@
-.. contents::
+# djangosaml2
 
-===========
-djangosaml2
-===========
+*Note:* This is a fork of [lgs/djangosaml2](https://bitbucket.org/lgs/djangosaml2). I've updated the dependencies and made some minor changes to make the code Python 3 compatible.
+
+It is tested with Django 1.8.3 and Python 3.4.2.
+
+*Note end*
 
 djangosaml2 is a Django application that integrates the PySAML2 library
 into your project. This mean that you can protect your Django based project
@@ -12,8 +14,7 @@ This document will guide you through a few simple steps to accomplish
 such goal.
 
 
-Installation
-============
+## Installation
 
 PySAML2 uses xmlsec1_ binary to sign SAML assertions so you need to install
 it either through your operating system package or by compiling the source
@@ -26,8 +27,7 @@ Now you can install the djangosaml2 package using easy_install or pip. This
 will also install PySAML2 and its dependencies automatically.
 
 
-Configuration
-=============
+## Configuration
 
 There are three things you need to setup to make djangosaml2 works in your
 Django project:
@@ -39,8 +39,7 @@ Django project:
    certificate.
 
 
-Changes in the settings.py file
--------------------------------
+### Changes in the settings.py file
 The first thing you need to do is add ``djangosaml2`` to the list of
 installed apps::
 
@@ -107,8 +106,7 @@ you should set the LOGIN_URL option to another view and put a link in such
 view to the ``/saml2/login/`` view.
 
 
-Changes in the urls.py file
----------------------------
+### Changes in the urls.py file
 
 The next thing you need to do is to include ``djangosaml2.urls`` module to your
 main ``urls.py`` module::
@@ -127,8 +125,8 @@ prefix. Feel free to use your own prefix but be consistent with what
 you have put in the ``settings.py`` file in the LOGIN_URL parameter.
 
 
-PySAML2 specific files and configuration
-----------------------------------------
+### PySAML2 specific files and configuration
+
 Once you have finished configuring your Django project you have to
 start configuring PySAML. If you use just that library you have to
 put your configuration options in a file and initialize PySAML2 with
@@ -285,8 +283,7 @@ setting::
   SAML_CONFIG_LOADER = 'python.path.to.your.callable'
 
 
-User attributes
----------------
+### User attributes
 
 In the SAML 2.0 authentication process the Identity Provider (IdP) will
 send a security assertion to the Service Provider (SP) upon a succesful
@@ -369,8 +366,7 @@ the user object so you don't need to do it and no more calls to
 the save method are issued.
 
 
-IdP setup
-=========
+## IdP setup
 Congratulations, you have finished configuring the SP side of the federation.
 Now you need to send the entity id and the metadata of this new SP to the
 IdP administrators so they can add it to their list of trusted services.
@@ -380,8 +376,10 @@ going to the http://localhost:8000/saml2/metadata url. If you have included
 the djangosaml2 urls under a different url prefix you need to correct this
 url.
 
-SimpleSAMLphp issues
---------------------
+### SimpleSAMLphp issues
+
+*This should be fixed in this fork*
+
 As of SimpleSAMLphp 1.8.2 there is a problem if you specify attributes in
 the SP configuration. When the SimpleSAMLphp metadata parser converts the
 XML into its custom php format it puts the following option::
@@ -405,8 +403,7 @@ filter like this::
              'class' => 'core:AttributeMap', 'name2oid'
         ),
 
-Testing
-=======
+## Testing
 
 One way to check if everything is working as expected is to enable the
 following url::
@@ -434,8 +431,7 @@ and it will run the tests in multiple versions of Python.
 
 .. _`tox`: http://pypi.python.org/pypi/tox
 
-FAQ
-===
+## FAQ
 
 **Why can't SAML be implemented as an Django Authentication Backend?**
 
