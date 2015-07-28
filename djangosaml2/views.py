@@ -123,7 +123,7 @@ def login(request,
             entityid=selected_idp, relay_state=came_from,
             binding=BINDING_HTTP_REDIRECT,
             )
-    except TypeError, e:
+    except TypeError as e:
         logger.error('Unable to know which IdP to use')
         return HttpResponse(unicode(e))
 
@@ -355,8 +355,8 @@ def metadata(request, config_loader_path=None, valid_for=None):
 
 def register_namespace_prefixes():
     from saml2 import md, saml, samlp
-    import xmlenc
-    import xmldsig
+    from saml2 import xmldsig
+    from saml2 import xmlenc
     prefixes = (('saml', saml.NAMESPACE),
                 ('samlp', samlp.NAMESPACE),
                 ('md', md.NAMESPACE),
