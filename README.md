@@ -1,10 +1,12 @@
 # djangosaml2
 
-*Note:* This is a fork of [lgs/djangosaml2](https://bitbucket.org/lgs/djangosaml2). I've updated the dependencies and made some minor changes to make the code Python 3 compatible.
+**Note:** 
+
+This is a fork of [lgs/djangosaml2](https://bitbucket.org/lgs/djangosaml2). I've updated the dependencies and made some minor changes to make the code Python 3 compatible.
 
 It is tested with Django 1.8.3 and Python 3.4.2.
 
-*Note end*
+**Note end**
 
 djangosaml2 is a Django application that integrates the PySAML2 library
 into your project. This mean that you can protect your Django based project
